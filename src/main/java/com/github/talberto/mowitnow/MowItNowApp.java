@@ -1,5 +1,6 @@
 package com.github.talberto.mowitnow;
 
+import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
 
@@ -18,6 +19,7 @@ public interface MowItNowApp {
    * 
    * @param inputReader Where to read the configuration from
    * @param outputWriter Where to write the output to
+   * @throws IOException 
    */
-  public Reader start(Reader inputReader, Writer outputWriter);
+  public void start(Reader inputReader, Writer outputWriter) throws IOException;
 }

@@ -27,7 +27,7 @@ public class MowItNowAppIT {
   MowItNowApp app;
 
   @Before
-  public void loadApp() {
+  public void setup() {
     Injector injector = Guice.createInjector(MowItNowModule.create());
     app = injector.getInstance(MowItNowApp.class);
   }

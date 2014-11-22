@@ -18,5 +18,6 @@ public class MowItNowModule extends AbstractModule {
   @Override
   protected void configure() {
     bind(MowItNowApp.class).to(DefaultMowItNowApp.class);
+    bind(ProblemConfigurationParserFactory.class).to(DefaultProblemConfigurationParserFactory.class);
   }
 }
