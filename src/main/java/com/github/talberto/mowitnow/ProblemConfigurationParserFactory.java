@@ -43,4 +43,14 @@ public interface ProblemConfigurationParserFactory {
    * @return
    */
   public Iterator<MowerConfigurationParser> newMowerConfigurationParserIterator(Reader reader);
+
+  /**
+   * Creates a new {@link Mower} given the initial position and direction
+   * 
+   * @param x
+   * @param y
+   * @param direction
+   * @return
+   */
+  public Mower newMower(int x, int y, Direction direction);
 }

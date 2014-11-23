@@ -9,6 +9,18 @@ package com.github.talberto.mowitnow;
  */
 public class Mower {
 
+  protected Point position;
+  protected Direction direction;
+  
+  protected Mower(int x, int y, Direction direction) {
+    this(new Point(x, y), direction);
+  }
+
+  protected Mower(Point position, Direction direction) {
+    this.position = position;
+    this.direction = direction;
+  }
+
   /**
    * Executes the action passed as parameter
    * 
@@ -25,7 +37,7 @@ public class Mower {
    * @return a {@link Point} reprensenting the mower's current position
    */
   public Point getPosition() {
-    throw new UnsupportedOperationException("Not implemented yet");
+    return position;
   }
 
   /**
@@ -34,6 +46,6 @@ public class Mower {
    * @return the {@link Direction} that the mower is pointing to
    */
   public Direction getDirection() {
-    throw new UnsupportedOperationException("Not implemented yet");
+    return direction;
   }
 }

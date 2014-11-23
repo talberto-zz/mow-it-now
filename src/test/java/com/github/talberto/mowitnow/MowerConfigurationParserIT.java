@@ -33,4 +33,6 @@ public class MowerConfigurationParserIT {
     assertThat("The y of the mower's position isn't correct", position.getY(), equalTo(2));
     assertThat("The direction of the mower isn't correct", mower.getDirection(), equalTo(Direction.N));
   }
+  
+  
 }

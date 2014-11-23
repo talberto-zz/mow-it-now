@@ -1,7 +1,11 @@
 package com.github.talberto.mowitnow;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.Reader;
+import java.io.StringReader;
 import java.util.Iterator;
+import java.util.Scanner;
 
 /**
  * A parser for a Mower configuration.
@@ -12,15 +16,27 @@ import java.util.Iterator;
 public class MowerConfigurationParser {
 
   protected static class MowerConfigurationParserIterator implements Iterator<MowerConfigurationParser> {
-    protected Reader reader;
+    protected BufferedReader reader;
     
     protected MowerConfigurationParserIterator(Reader reader) {
-      this.reader = reader;
+      this.reader = new BufferedReader(reader);
     }
 
     @Override
     public boolean hasNext() {
-      throw new UnsupportedOperationException("Not implemented yet");
+      try {
+        reader.mark(1);
+        int c = reader.read();
+        reader.reset();
+        
+        if(c == -1) {
+          return false;
+        } else {
+          return true;
+        }
+      } catch (IOException e) {
+        throw new IllegalStateException("Underlying configuration source threw an unexpected exception", e);
+      }
     }
 
     @Override
@@ -34,10 +50,12 @@ public class MowerConfigurationParser {
     }
   }
 
-  protected Reader reader;
+  protected ProblemConfigurationParserFactory factory;
+  protected BufferedReader reader;
   
-  protected MowerConfigurationParser(Reader reader) {
-    this.reader = reader;
+  protected MowerConfigurationParser(ProblemConfigurationParserFactory factory, Reader reader) {
+    this.factory = factory;
+    this.reader = new BufferedReader(reader);
   }
   
   /**
@@ -57,6 +75,21 @@ public class MowerConfigurationParser {
    * @throws IllegalStateException
    */
   public Mower parseMower(Grass grass) throws IllegalStateException {
-    throw new UnsupportedOperationException("Not implemented yet");
+    try {
+      String line = reader.readLine();
+      Reader stringReader = new StringReader(line);
+      Scanner scanner = new Scanner(stringReader);
+      
+      int x = scanner.nextInt();
+      int y = scanner.nextInt();
+      String directionStr = scanner.next();
+      scanner.close();
+      
+      Direction direction = Direction.valueOf(directionStr);
+      
+      return factory.newMower(x, y, direction);
+    } catch (IOException e) {
+      throw new IllegalStateException("Underlying configuration source threw an unexpected exception", e);
+    }
   }
 }

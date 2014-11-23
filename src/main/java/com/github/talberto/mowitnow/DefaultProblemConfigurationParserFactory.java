@@ -23,11 +23,16 @@ public class DefaultProblemConfigurationParserFactory implements ProblemConfigur
 
   @Override
   public MowerConfigurationParser newMowerConfigurationParser(Reader reader) {
-    return new MowerConfigurationParser(reader);
+    return new MowerConfigurationParser(this, reader);
   }
 
   @Override
   public Iterator<MowerConfigurationParser> newMowerConfigurationParserIterator(Reader reader) {
     return new MowerConfigurationParser.MowerConfigurationParserIterator(reader);
+  }
+
+  @Override
+  public Mower newMower(int x, int y, Direction direction) {
+    return new Mower(x, y, direction);
   }
 }
