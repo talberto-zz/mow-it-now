@@ -3,6 +3,7 @@ package com.github.talberto.mowitnow;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
+import java.util.Iterator;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -28,13 +29,17 @@ public class DefaultMowItNowApp implements MowItNowApp {
     ProblemConfigurationParser problemConfParser = configurationFactory.newProblemConfigurationParser(inputReader);
     // Parse the grass configuration
     Grass grass = problemConfParser.parseGrass();
-    // Parse each mower's configuration
-    while(problemConfParser.hasMoreMowers()) {
-      MowerConfigurationParser mowerConfParser = problemConfParser.nextMowerConfigurationParser();
-      Mower mower = mowerConfParser.nextMower(grass);
+    // Iterate over all the mowers
+    Iterator<MowerConfigurationParser> mowerIterator = problemConfParser.mowerConfigurationParserIterator();
+    while(mowerIterator.hasNext()) {
+      MowerConfigurationParser mowerConfParser = mowerIterator.next();
+      Mower mower = mowerConfParser.parseMower(grass);
       
       // Parse the actions
-      for(Action action : mowerConfParser.parseActions()) {
+      Iterator<Action> actionIterator = mowerConfParser.actionIterator();
+      
+      while(actionIterator.hasNext()) {
+        Action action = actionIterator.next();
         mower = mower.move(action);
       }
       

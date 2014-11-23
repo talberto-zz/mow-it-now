@@ -8,12 +8,18 @@ package com.github.talberto.mowitnow;
  */
 public class Grass {
 
+  final Point topRight;
+  
+  protected Grass(int x, int y) {
+    this.topRight = new Point(x, y);
+  }
+
   /**
    * Returns the top right point of the Grass
    * 
    * @return
    */
   public Point getTopRight() {
-    throw new UnsupportedOperationException("Not implemented yet");
+    return topRight;
   }
 }

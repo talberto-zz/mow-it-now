@@ -6,6 +6,9 @@ package com.github.talberto.mowitnow;
  * @author Tomás Rodríguez (rstomasalberto@gmail.com)
  *
  */
-public class Direction {
-
+public enum Direction {
+  N,
+  W,
+  S,
+  E
 }
