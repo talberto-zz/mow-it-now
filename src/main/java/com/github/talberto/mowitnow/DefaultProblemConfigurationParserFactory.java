@@ -12,6 +12,6 @@ public class DefaultProblemConfigurationParserFactory implements ProblemConfigur
 
   @Override
   public ProblemConfigurationParser newProblemConfigurationParser(Reader reader) {
-    throw new UnsupportedOperationException("Not implemented yet");
+    return new DefaultProblemConfigurationParser(reader);
   }
 }

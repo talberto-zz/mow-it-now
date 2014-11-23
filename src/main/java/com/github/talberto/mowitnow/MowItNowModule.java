@@ -11,7 +11,7 @@ import com.google.inject.Module;
  */
 public class MowItNowModule extends AbstractModule {
 
-  public static Module create() {
+  public static Module newInstance() {
     return new MowItNowModule();
   }
 

@@ -8,4 +8,12 @@ package com.github.talberto.mowitnow;
  */
 public class Grass {
 
+  /**
+   * Returns the top right point of the Grass
+   * 
+   * @return
+   */
+  public Point getTopRight() {
+    throw new UnsupportedOperationException("Not implemented yet");
+  }
 }

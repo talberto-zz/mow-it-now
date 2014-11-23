@@ -1,12 +1,5 @@
 package com.github.talberto.mowitnow;
 
-/**
- * A ProblemConfigurationParser is responsible of parsing the configuration of the 
- * problem.
- * 
- * @author Tomás Rodríguez (rstomasalberto@gmail.com)
- *
- */
 public interface ProblemConfigurationParser {
 
   /**
@@ -14,18 +7,17 @@ public interface ProblemConfigurationParser {
    * 
    * @return the parsed {@link Grass}
    */
-  Grass parseGrass();
+  public abstract Grass parseGrass();
 
   /**
    * @return true if there are more mowers to parse, false otherwise
    */
-  boolean hasMoreMowers();
+  public abstract boolean hasMoreMowers();
 
   /**
    * Retrieves the next {@link MowerConfigurationParser} in the flow
    * 
    * @return
    */
-  MowerConfigurationParser nextMowerConfigurationParser();
-
+  public abstract MowerConfigurationParser nextMowerConfigurationParser();
 }
