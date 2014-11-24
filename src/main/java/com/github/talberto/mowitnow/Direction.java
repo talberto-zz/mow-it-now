@@ -1,7 +1,7 @@
 package com.github.talberto.mowitnow;
 
 /**
- * A possible direction (N, S, E, W)
+ * A possible direction (N, W, S, E).
  * 
  * @author Tomás Rodríguez (rstomasalberto@gmail.com)
  *

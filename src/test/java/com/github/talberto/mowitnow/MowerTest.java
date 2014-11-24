@@ -15,7 +15,8 @@ public class MowerTest {
   Grass grass = new Grass(topRight);
   Mower mower = new Mower(initialPosition, initialDirection, grass);
   
-  @Test public void testGetPosition() {
+  @Test public void testMove() {
     
   }
 }
+

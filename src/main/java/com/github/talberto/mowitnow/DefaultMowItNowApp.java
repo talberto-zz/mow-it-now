@@ -40,7 +40,7 @@ public class DefaultMowItNowApp implements MowItNowApp {
       
       while(actionIterator.hasNext()) {
         Action action = actionIterator.next();
-        mower = mower.move(action);
+        mower = mower.perform(action);
       }
       
       Point position = mower.getPosition();
