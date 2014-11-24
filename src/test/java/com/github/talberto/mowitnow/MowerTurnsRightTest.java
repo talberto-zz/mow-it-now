@@ -27,7 +27,8 @@ public class MowerTurnsRightTest {
       .put(Direction.E, Direction.N)
       .build();
   
-  @Parameters public static Collection<Object[]> data() {
+  @Parameters(name="{index}: Direction {0}")
+  public static Collection<Object[]> data() {
     return Arrays.asList(
         new Object[][] {
             { Direction.N },
@@ -40,10 +41,10 @@ public class MowerTurnsRightTest {
 
   @Parameter public Direction initialDirection;
   
-  @Test public void testMoveToRight() {
+  @Test public void testTurnRight() {
     Mower mower = new Mower(mock(Point.class), initialDirection, mock(Grass.class));
     mower = mower.perform(Action.D);
     
-    assertThat("The mower didn't turn right correctly", mower.getDirection(), equalTo(rightOf.get(mower.getDirection())));
+    assertThat("The mower didn't turn right correctly", mower.getDirection(), equalTo(rightOf.get(initialDirection)));
   }
 }

@@ -9,9 +9,9 @@ package com.github.talberto.mowitnow;
  */
 public class Mower {
 
-  protected Point position;
-  protected Direction direction;
-  protected Grass grass;
+  protected final Point position;
+  protected final Direction direction;
+  protected final Grass grass;
   
   protected Mower(int x, int y, Direction direction, Grass grass) {
     this(new Point(x, y), direction, grass);
@@ -30,7 +30,28 @@ public class Mower {
    * @return
    */
   public Mower perform(Action action) {
-    throw new UnsupportedOperationException("Not implemented yet");
+    Direction newDirection;
+    Point newPosition;
+    
+    switch(action) {
+    // Move forward
+    case A:
+      newPosition = position.apply(direction.vector());
+      return new Mower(newPosition, direction, grass);
+
+    // Turn left
+    case G:
+      newDirection = direction.turnLeft();
+      return new Mower(position, newDirection, grass);
+      
+    // Turn right
+    case D:
+      newDirection = direction.turnRight();
+      return new Mower(position, newDirection, grass);
+      
+    default:
+      throw new UnsupportedOperationException(String.format("Action not supported [%s]", action));
+    }
   }
 
   /**
