@@ -34,5 +34,11 @@ public class MowerConfigurationParserIT {
     assertThat("The direction of the mower isn't correct", mower.getDirection(), equalTo(Direction.N));
   }
   
-  
+  @Test public void testActionIterator() {
+    String mowerConf = "";
+    StringReader inputReader = new StringReader(mowerConf);
+    MowerConfigurationParser mowerParser = parserFactory.newMowerConfigurationParser(inputReader);
+    
+    assertNotNull("Returned action iterator cannot be null", mowerParser.actionIterator());
+  }
 }

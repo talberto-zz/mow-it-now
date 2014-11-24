@@ -17,8 +17,10 @@ public class MowerConfigurationParser {
 
   protected static class MowerConfigurationParserIterator implements Iterator<MowerConfigurationParser> {
     protected BufferedReader reader;
+    protected ProblemConfigurationParserFactory factory;
     
-    protected MowerConfigurationParserIterator(Reader reader) {
+    protected MowerConfigurationParserIterator(ProblemConfigurationParserFactory factory, Reader reader) {
+      this.factory = factory;
       this.reader = new BufferedReader(reader);
     }
 
@@ -41,7 +43,7 @@ public class MowerConfigurationParser {
 
     @Override
     public MowerConfigurationParser next() {
-      throw new UnsupportedOperationException("Not implemented yet");
+      return factory.newMowerConfigurationParser(reader);
     }
 
     @Override
@@ -50,6 +52,24 @@ public class MowerConfigurationParser {
     }
   }
 
+  protected static class ActionIterator implements Iterator<Action> {
+
+    @Override
+    public boolean hasNext() {
+      throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Override
+    public Action next() {
+      throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Override
+    public void remove() {
+      throw new UnsupportedOperationException("This operation isn't supported");
+    }
+  }
+  
   protected ProblemConfigurationParserFactory factory;
   protected BufferedReader reader;
   
