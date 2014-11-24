@@ -44,6 +44,7 @@ public class MowItNowAppIT {
         PipedReader actualOutputReader = new PipedReader(1024);
         Writer outputWriter = new PipedWriter(actualOutputReader)) {
       app.start(inputReader, outputWriter);
+      outputWriter.close();
       assertThat("The expected output and the actual output don't have the same contents", actualOutputReader, contentEqualsTo(expectedOutputReader));
     }
   }
