@@ -1,7 +1,9 @@
 package com.github.talberto.mowitnow;
 
-import static org.junit.Assert.assertFalse;
+import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import java.io.Reader;
@@ -39,11 +41,23 @@ ProblemConfigurationParserFactory parserFactory;
   }
   
   @Test public void testNext() {
-    String mowerConf = "1";
+    String mowerConf = "DGA";
     Reader inputReader = new StringReader(mowerConf);
     Iterator<Action> it = parserFactory.newActionIterator(inputReader);
+    Action action = it.next();
     
-    assertNotNull("MowerConfigurationParser returned by iterator cannot be null", it.next());
+    assertThat("Action returned by iterator cannot be null", action, notNullValue());
+    assertThat("The first action isn't correct", action, equalTo(Action.D));
+    
+    action = it.next();
+    
+    assertThat("Action returned by iterator cannot be null", action, notNullValue());
+    assertThat("The second action isn't correct", action, equalTo(Action.G));
+    
+    action = it.next();
+    
+    assertThat("Action returned by iterator cannot be null", action, notNullValue());
+    assertThat("The third action isn't correct", action, equalTo(Action.A));
   }
   
   @Test(expected=UnsupportedOperationException.class) public void testRemove() {

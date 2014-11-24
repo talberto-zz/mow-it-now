@@ -6,6 +6,17 @@ package com.github.talberto.mowitnow;
  * @author Tomás Rodríguez (rstomasalberto@gmail.com)
  *
  */
-public class Action {
-
+public enum Action {
+  /**
+   * Droite
+   */
+  D,
+  /**
+   * Gauche
+   */
+  G,
+  /**
+   * Avancer
+   */
+  A
 }

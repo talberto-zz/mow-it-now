@@ -11,14 +11,16 @@ public class Mower {
 
   protected Point position;
   protected Direction direction;
+  protected Grass grass;
   
-  protected Mower(int x, int y, Direction direction) {
-    this(new Point(x, y), direction);
+  protected Mower(int x, int y, Direction direction, Grass grass) {
+    this(new Point(x, y), direction, grass);
   }
 
-  protected Mower(Point position, Direction direction) {
+  protected Mower(Point position, Direction direction, Grass grass) {
     this.position = position;
     this.direction = direction;
+    this.grass = grass;
   }
 
   /**

@@ -32,12 +32,12 @@ public class DefaultProblemConfigurationParserFactory implements ProblemConfigur
   }
 
   @Override
-  public Mower newMower(int x, int y, Direction direction) {
-    return new Mower(x, y, direction);
+  public Mower newMower(int x, int y, Direction direction, Grass grass) {
+    return new Mower(x, y, direction, grass);
   }
 
   @Override
   public Iterator<Action> newActionIterator(Reader reader) {
-    throw new UnsupportedOperationException("Not implemented yet");
+    return new MowerConfigurationParser.ActionIterator(this, reader);
   }
 }

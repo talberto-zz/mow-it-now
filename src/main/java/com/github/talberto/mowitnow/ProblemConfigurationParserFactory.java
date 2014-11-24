@@ -50,9 +50,10 @@ public interface ProblemConfigurationParserFactory {
    * @param x
    * @param y
    * @param direction
+   * @param grass 
    * @return
    */
-  public Mower newMower(int x, int y, Direction direction);
+  public Mower newMower(int x, int y, Direction direction, Grass grass);
 
   /**
    * Creates and returns a new {@link Action} iterator

@@ -11,7 +11,11 @@ public class Grass {
   final Point topRight;
   
   protected Grass(int x, int y) {
-    this.topRight = new Point(x, y);
+    this(new Point(x, y));
+  }
+
+  public Grass(Point topRight) {
+    this.topRight = topRight;
   }
 
   /**

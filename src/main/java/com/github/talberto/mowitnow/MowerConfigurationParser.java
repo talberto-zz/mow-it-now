@@ -53,15 +53,64 @@ public class MowerConfigurationParser {
   }
 
   protected static class ActionIterator implements Iterator<Action> {
+    protected DefaultProblemConfigurationParserFactory factory;
+    protected BufferedReader reader;
+    
+    protected ActionIterator(DefaultProblemConfigurationParserFactory factory, Reader reader) {
+      this.factory = factory;
+      BufferedReader tmpLineReader = new BufferedReader(reader);
+      String line;
+      try {
+        line = tmpLineReader.readLine();
+        
+        if(line == null) {
+          line = "";
+        }
+      } catch (IOException e) {
+        throw new IllegalStateException("The underlying configuration source threw an unexpected exception", e);
+      }
+      this.reader = new BufferedReader(new StringReader(line));
+    }
 
     @Override
     public boolean hasNext() {
-      throw new UnsupportedOperationException("Not implemented yet");
+      try {
+        reader.mark(1);
+        int c = reader.read();
+        reader.reset();
+        
+        if(c == -1) {
+          return false;
+        } else {
+          return true;
+        }
+      } catch (IOException e) {
+        throw new IllegalStateException("Underlying configuration source threw an unexpected exception", e);
+      }
     }
 
     @Override
     public Action next() {
-      throw new UnsupportedOperationException("Not implemented yet");
+      int c;
+      try {
+        c = reader.read();
+      } catch (IOException e) {
+        throw new IllegalStateException("Underlying configuration source threw an unexpected exception", e);
+      }
+      
+      if(c == -1) {
+        throw new IllegalStateException("The underlying source configuration is exhausted");
+      }
+      
+      char actionChar = (char) c;
+      String actionString = Character.toString(actionChar);
+      Action action = null;
+      try {
+        action = Action.valueOf(actionString);
+      } catch (Exception e) {
+        throw new IllegalStateException(String.format("Read invalid action: [%s]", action), e);
+      }
+      return action;
     }
 
     @Override
@@ -84,7 +133,7 @@ public class MowerConfigurationParser {
    * @return
    */
   public Iterator<Action> actionIterator() {
-    throw new UnsupportedOperationException("Not implemented yet");
+    return factory.newActionIterator(reader);
   }
 
   /**
@@ -107,7 +156,7 @@ public class MowerConfigurationParser {
       
       Direction direction = Direction.valueOf(directionStr);
       
-      return factory.newMower(x, y, direction);
+      return factory.newMower(x, y, direction, grass);
     } catch (IOException e) {
       throw new IllegalStateException("Underlying configuration source threw an unexpected exception", e);
     }
