@@ -1,4 +1,4 @@
-package com.github.talberto.mowitnow;
+package com.github.talberto.mowitnow.geometry;
 
 public class Vector {
 

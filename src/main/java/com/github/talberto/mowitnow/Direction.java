@@ -1,5 +1,7 @@
 package com.github.talberto.mowitnow;
 
+import com.github.talberto.mowitnow.geometry.Vector;
+
 /**
  * A possible direction (N, W, S, E).
  * 

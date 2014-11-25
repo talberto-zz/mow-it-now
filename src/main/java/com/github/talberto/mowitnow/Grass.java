@@ -1,5 +1,7 @@
 package com.github.talberto.mowitnow;
 
+import com.github.talberto.mowitnow.geometry.Point;
+
 /**
  * A class that represents the grass.
  * 
@@ -10,7 +12,7 @@ public class Grass {
 
   final Point topRight;
   
-  protected Grass(int x, int y) {
+  public Grass(int x, int y) {
     this(new Point(x, y));
   }
 

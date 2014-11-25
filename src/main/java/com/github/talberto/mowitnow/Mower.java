@@ -1,5 +1,7 @@
 package com.github.talberto.mowitnow;
 
+import com.github.talberto.mowitnow.geometry.Point;
+
 /**
  * Represents a Mower. A mower has a position and an orientation. A mower accepts actions
  * in order to move, which potentially modify it's position and orientation.
@@ -13,11 +15,11 @@ public class Mower {
   protected final Direction direction;
   protected final Grass grass;
   
-  protected Mower(int x, int y, Direction direction, Grass grass) {
+  public Mower(int x, int y, Direction direction, Grass grass) {
     this(new Point(x, y), direction, grass);
   }
 
-  protected Mower(Point position, Direction direction, Grass grass) {
+  public Mower(Point position, Direction direction, Grass grass) {
     this.position = position;
     this.direction = direction;
     this.grass = grass;

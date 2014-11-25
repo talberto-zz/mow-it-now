@@ -29,7 +29,6 @@
 
   <properties>
     <maven.surefire.version>2.17</maven.surefire.version>
-    <maven.failsafe.version>2.17</maven.failsafe.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8)</project.reporting.outputEncoding>
     <maven.compiler.source>1.7</maven.compiler.source>                                 <!-- the language level for the source files -->
@@ -40,11 +39,8 @@
     <junit.version>4.11</junit.version>
     <hamcrest.version>1.3</hamcrest.version>
     <mockito.version>1.10.8</mockito.version>
-    <powermock.version>1.5.3</powermock.version>
     <cglib.version>2.2.2</cglib.version>
     <objenesis.version>1.2</objenesis.version>
-    <slf4j.version>1.7.7</slf4j.version>
-    <guice.version>3.0</guice.version>
   </properties>
 
   <build>
@@ -53,19 +49,6 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>${maven.surefire.version}</version>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-failsafe-plugin</artifactId>
-        <version>${maven.failsafe.version}</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>integration-test</goal>
-              <goal>verify</goal>
-            </goals>
-          </execution>
-        </executions>
       </plugin>
     </plugins>
   </build>
@@ -91,21 +74,6 @@
       <artifactId>objenesis</artifactId>
       <version>${objenesis.version}</version>
     </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-      <version>${slf4j.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-log4j12</artifactId>
-      <version>${slf4j.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.google.inject</groupId>
-      <artifactId>guice</artifactId>
-      <version>${guice.version}</version>
-    </dependency>
 
     <!-- Test dependencies -->
     <dependency>
@@ -130,19 +98,6 @@
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
       <version>${mockito.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <!-- PowerMock deps for EasyMock and JUnit > 4.4 https://code.google.com/p/powermock/wiki/EasyMock_maven -->
-    <dependency>
-      <groupId>org.powermock</groupId>
-      <artifactId>powermock-module-junit4</artifactId>
-      <version>${powermock.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.powermock</groupId>
-      <artifactId>powermock-api-mockito</artifactId>
-      <version>${powermock.version}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>

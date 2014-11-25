@@ -1,6 +1,9 @@
-package com.github.talberto.mowitnow;
+package com.github.talberto.mowitnow.parser.impl;
 
 import java.io.Reader;
+
+import com.github.talberto.mowitnow.parser.ProblemConfigurationParser;
+import com.github.talberto.mowitnow.parser.ProblemConfigurationParserFactory;
 
 /**
  * Default implementation for the {@link ProblemConfigurationParserFactory}
@@ -8,7 +11,7 @@ import java.io.Reader;
  * @author Tomás Rodríguez (rstomasalberto@gmail.com)
  *
  */
-public class DefaultProblemConfigurationParserFactory implements ProblemConfigurationParserFactory {
+public class DefaultProblemConfigurationParserFactory extends ProblemConfigurationParserFactory {
 
   @Override
   public ProblemConfigurationParser newProblemConfigurationParser(Reader reader) {

@@ -1,9 +1,11 @@
-package com.github.talberto.mowitnow;
+package com.github.talberto.mowitnow.parser.impl;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.Iterator;
+
+import com.github.talberto.mowitnow.Action;
 
 class DefaultActionIterator implements Iterator<Action> {
   protected final BufferedReader reader;

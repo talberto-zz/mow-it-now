@@ -1,6 +1,10 @@
-package com.github.talberto.mowitnow;
+package com.github.talberto.mowitnow.parser;
 
 import java.util.Iterator;
+
+import com.github.talberto.mowitnow.Action;
+import com.github.talberto.mowitnow.Grass;
+import com.github.talberto.mowitnow.Mower;
 
 public interface MowerConfigurationParser {
 

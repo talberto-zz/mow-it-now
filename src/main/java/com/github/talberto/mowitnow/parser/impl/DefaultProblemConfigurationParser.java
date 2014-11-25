@@ -1,10 +1,14 @@
-package com.github.talberto.mowitnow;
+package com.github.talberto.mowitnow.parser.impl;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.Iterator;
 import java.util.Scanner;
+
+import com.github.talberto.mowitnow.Grass;
+import com.github.talberto.mowitnow.parser.MowerConfigurationParser;
+import com.github.talberto.mowitnow.parser.ProblemConfigurationParser;
 
 /**
  * A ProblemConfigurationParser is responsible of parsing the configuration of the 
@@ -22,6 +26,10 @@ public class DefaultProblemConfigurationParser implements ProblemConfigurationPa
     this.reader = new BufferedReader(reader);
     try {
       this.grassConfLine = this.reader.readLine();
+      
+      if(this.grassConfLine == null) {
+        throw new IllegalStateException("The configurations source is exhausted, couldn't read grass configuration");
+      }
     } catch (IOException e) {
       throw new IllegalStateException("Underlying configuration source threw an unexpected exception", e);
     }

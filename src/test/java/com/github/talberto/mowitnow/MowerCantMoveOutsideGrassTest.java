@@ -12,6 +12,12 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
 
+import com.github.talberto.mowitnow.Action;
+import com.github.talberto.mowitnow.Direction;
+import com.github.talberto.mowitnow.Grass;
+import com.github.talberto.mowitnow.Mower;
+import com.github.talberto.mowitnow.geometry.Point;
+
 @RunWith(Parameterized.class)
 public class MowerCantMoveOutsideGrassTest {
 

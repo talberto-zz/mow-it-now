@@ -1,6 +1,9 @@
-package com.github.talberto.mowitnow;
+package com.github.talberto.mowitnow.parser;
 
 import java.util.Iterator;
+
+import com.github.talberto.mowitnow.Grass;
+import com.github.talberto.mowitnow.parser.impl.DefaultMowerConfigurationParser;
 
 public interface ProblemConfigurationParser {
 

@@ -1,4 +1,6 @@
-package com.github.talberto.mowitnow;
+package com.github.talberto.mowitnow.geometry;
+
+import com.github.talberto.mowitnow.Grass;
 
 /**
  * A Point in the {@link Grass}, it has x and y coordinates

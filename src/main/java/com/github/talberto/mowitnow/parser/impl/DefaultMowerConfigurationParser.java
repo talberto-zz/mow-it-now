@@ -1,7 +1,13 @@
-package com.github.talberto.mowitnow;
+package com.github.talberto.mowitnow.parser.impl;
 
 import java.util.Iterator;
 import java.util.Scanner;
+
+import com.github.talberto.mowitnow.Action;
+import com.github.talberto.mowitnow.Direction;
+import com.github.talberto.mowitnow.Grass;
+import com.github.talberto.mowitnow.Mower;
+import com.github.talberto.mowitnow.parser.MowerConfigurationParser;
 
 /**
  * A parser for a Mower configuration.

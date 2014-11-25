@@ -1,9 +1,11 @@
-package com.github.talberto.mowitnow;
+package com.github.talberto.mowitnow.parser.impl;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.Iterator;
+
+import com.github.talberto.mowitnow.parser.MowerConfigurationParser;
 
 class DefaultMowerConfigurationParserIterator implements Iterator<MowerConfigurationParser> {
   protected final BufferedReader reader;
@@ -37,6 +39,9 @@ class DefaultMowerConfigurationParserIterator implements Iterator<MowerConfigura
 
   @Override
   public MowerConfigurationParser next() {
+    if(mowerConfLine == null || actionsLine == null) {
+      throw new IllegalStateException("Incoherent iterator state");
+    }
     return new DefaultMowerConfigurationParser(mowerConfLine, actionsLine);
   }
 

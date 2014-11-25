@@ -15,6 +15,7 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
 
+import com.github.talberto.mowitnow.geometry.Point;
 import com.google.common.collect.ImmutableMap;
 
 @RunWith(Parameterized.class)
