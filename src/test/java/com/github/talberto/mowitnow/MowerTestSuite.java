@@ -7,7 +7,8 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({
   MowerTurnsLeftTest.class,
   MowerTurnsRightTest.class,
-  MowerMovesForwardTest.class
+  MowerMovesForwardTest.class,
+  MowerCantMoveOutsideGrassTest.class
 })
 public class MowerTestSuite {
 }
