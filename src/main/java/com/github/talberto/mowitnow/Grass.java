@@ -26,4 +26,8 @@ public class Grass {
   public Point getTopRight() {
     return topRight;
   }
+
+  public boolean contains(Point point) {
+    return 0 <= point.getX() && point.getX() <= topRight.getX() && 0 <= point.getY() && point.getY() <= topRight.getY();
+  }
 }

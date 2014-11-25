@@ -1,7 +1,6 @@
 package com.github.talberto.mowitnow;
 
 import java.io.Reader;
-import java.util.Iterator;
 
 /**
  * A Factory that creates {@link DefaultProblemConfigurationParser}'s
@@ -12,54 +11,10 @@ import java.util.Iterator;
 public interface ProblemConfigurationParserFactory {
 
   /**
-   * Creates a new {@link DefaultProblemConfigurationParser}
+   * Creates a new {@link ProblemConfigurationParserFactory}
    * 
    * @param reader the reader that the parser will use (and consume)
-   * @return a new {@link DefaultProblemConfigurationParser}
+   * @return a new {@link ProblemConfigurationParserFactory}
    */
   public ProblemConfigurationParser newProblemConfigurationParser(Reader reader);
-
-  /**
-   * Creates a new {@link Grass} with the coordinates of the top right corner
-   * 
-   * @param x
-   * @param y
-   * @return a new and initialized {@link Grass} object
-   */
-  public Grass newGrass(int x, int y);
-
-  /**
-   * Creates a new {@link MowerConfigurationParser}
-   * 
-   * @param reader The Reader that will be used by the parser
-   * @return
-   */
-  public MowerConfigurationParser newMowerConfigurationParser(Reader reader);
-
-  /**
-   * Creates an Iterator to iterate over the {@link MowerConfigurationParser}
-   * 
-   * @param reader
-   * @return
-   */
-  public Iterator<MowerConfigurationParser> newMowerConfigurationParserIterator(Reader reader);
-
-  /**
-   * Creates a new {@link Mower} given the initial position and direction
-   * 
-   * @param x
-   * @param y
-   * @param direction
-   * @param grass 
-   * @return
-   */
-  public Mower newMower(int x, int y, Direction direction, Grass grass);
-
-  /**
-   * Creates and returns a new {@link Action} iterator
-   * 
-   * @param inputReader
-   * @return
-   */
-  public Iterator<Action> newActionIterator(Reader reader);
 }

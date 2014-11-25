@@ -26,7 +26,7 @@ public class MowerConfigurationParserIteratorIT {
   @Test public void testHasNext() {
     String mowerConf = "1";
     Reader inputReader = new StringReader(mowerConf);
-    Iterator<MowerConfigurationParser> it = parserFactory.newMowerConfigurationParserIterator(inputReader);
+    Iterator<DefaultMowerConfigurationParser> it = parserFactory.newMowerConfigurationParserIterator(inputReader);
     
     assertTrue("Iterator must return true when there is more input available", it.hasNext());
   }
@@ -34,7 +34,7 @@ public class MowerConfigurationParserIteratorIT {
   @Test public void hasNextReturnsFalseWhenInputExhausted() {
     String mowerConf = "";
     Reader inputReader = new StringReader(mowerConf);
-    Iterator<MowerConfigurationParser> it = parserFactory.newMowerConfigurationParserIterator(inputReader);
+    Iterator<DefaultMowerConfigurationParser> it = parserFactory.newMowerConfigurationParserIterator(inputReader);
     
     assertFalse("Iterator must false when input is exhausted", it.hasNext());
   }
@@ -42,7 +42,7 @@ public class MowerConfigurationParserIteratorIT {
   @Test public void testNext() {
     String mowerConf = "1";
     Reader inputReader = new StringReader(mowerConf);
-    Iterator<MowerConfigurationParser> it = parserFactory.newMowerConfigurationParserIterator(inputReader);
+    Iterator<DefaultMowerConfigurationParser> it = parserFactory.newMowerConfigurationParserIterator(inputReader);
     
     assertNotNull("MowerConfigurationParser returned by iterator cannot be null", it.next());
   }
@@ -50,7 +50,7 @@ public class MowerConfigurationParserIteratorIT {
   @Test(expected=UnsupportedOperationException.class) public void testRemove() {
     String mowerConf = "";
     Reader inputReader = new StringReader(mowerConf);
-    Iterator<MowerConfigurationParser> it = parserFactory.newMowerConfigurationParserIterator(inputReader);
+    Iterator<DefaultMowerConfigurationParser> it = parserFactory.newMowerConfigurationParserIterator(inputReader);
     
     it.remove();
   }

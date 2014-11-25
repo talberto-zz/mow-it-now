@@ -2,7 +2,7 @@ package com.github.talberto.mowitnow;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.*;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -42,7 +42,11 @@ public class MowerMovesForwardTest {
   @Parameter public Direction initialDirection;
   
   @Test public void testMoveForward() {
-    Mower mower = new Mower(initialPosition, initialDirection, mock(Grass.class));
+    Grass grass = mock(Grass.class);
+    // "Infinite" grass
+    when(grass.contains(any(Point.class))).thenReturn(true);
+    
+    Mower mower = new Mower(initialPosition, initialDirection, grass);
     mower = mower.perform(Action.A);
     
     assertThat("The mower didn't move forward correctly", mower.getPosition(), equalTo(finalPosition.get(initialDirection)));

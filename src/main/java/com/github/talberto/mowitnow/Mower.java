@@ -37,7 +37,11 @@ public class Mower {
     // Move forward
     case A:
       newPosition = position.apply(direction.vector());
-      return new Mower(newPosition, direction, grass);
+      if(grass.contains(newPosition)) {
+        return new Mower(newPosition, direction, grass);
+      } else {
+        return new Mower(position, direction, grass);
+      }
 
     // Turn left
     case G:

@@ -24,7 +24,7 @@ public class MowerConfigurationParserIT {
     String mowerConf = "1 2 N";
     StringReader inputReader = new StringReader(mowerConf);
     Grass grass = new Grass(1, 1);
-    MowerConfigurationParser mowerParser = parserFactory.newMowerConfigurationParser(inputReader);
+    MowerConfigurationParser mowerParser = new DefaultMowerConfigurationParser(parserFactory, inputReader);
     
     Mower mower = mowerParser.parseMower(grass);
     

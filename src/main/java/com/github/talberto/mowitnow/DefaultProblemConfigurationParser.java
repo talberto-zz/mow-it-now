@@ -14,13 +14,17 @@ import java.util.Scanner;
  *
  */
 public class DefaultProblemConfigurationParser implements ProblemConfigurationParser {
-
-  protected ProblemConfigurationParserFactory factory;
-  protected BufferedReader reader;
   
-  protected DefaultProblemConfigurationParser(ProblemConfigurationParserFactory factory, Reader reader) {
-    this.factory = factory;
+  protected final BufferedReader reader;
+  protected final String grassConfLine;
+  
+  protected DefaultProblemConfigurationParser(Reader reader) {
     this.reader = new BufferedReader(reader);
+    try {
+      this.grassConfLine = this.reader.readLine();
+    } catch (IOException e) {
+      throw new IllegalStateException("Underlying configuration source threw an unexpected exception", e);
+    }
   }
 
   /* (non-Javadoc)
@@ -29,54 +33,19 @@ public class DefaultProblemConfigurationParser implements ProblemConfigurationPa
   @Override
   public Grass parseGrass() throws IllegalStateException {
     try {
-      String line = reader.readLine();
-      
-      if(line == null) {
-        throw new IllegalStateException("Unexpected end of the configuration source");
-      }
-      
-      Scanner scanner = new Scanner(line);
+      Scanner scanner = new Scanner(grassConfLine);
       int x = scanner.nextInt();
       int y = scanner.nextInt();
       scanner.close();
       
-      return factory.newGrass(x, y);
+      return new Grass(x, y);
     } catch (Exception e) {
       throw new IllegalStateException("The underlying configuration source threw an exception", e);
     }
   }
 
-  /* (non-Javadoc)
-   * @see com.github.talberto.mowitnow.ProblemConfigurationParser#hasMoreMowers()
-   */
-  @Override
-  public boolean hasMoreMowers() throws IllegalStateException {
-    try {
-      // Assume that if there is at least one more char in the reader, there are more configurations
-      reader.mark(1);
-      int c = reader.read();
-      
-      if(c == -1) {
-        return false;
-      } else {
-        reader.reset();
-        return true;
-      }
-    } catch (IOException e) {
-      throw new IllegalStateException("Error reading from underlying reader", e);
-    }
-  }
-
-  /* (non-Javadoc)
-   * @see com.github.talberto.mowitnow.ProblemConfigurationParser#nextMowerConfigurationParser()
-   */
-  @Override
-  public MowerConfigurationParser nextMowerConfigurationParser() throws IllegalStateException {
-    return factory.newMowerConfigurationParser(reader);
-  }
-
   @Override
   public Iterator<MowerConfigurationParser> mowerConfigurationParserIterator() {
-    return factory.newMowerConfigurationParserIterator(reader);
+    return new DefaultMowerConfigurationParserIterator(reader);
   }
 }
