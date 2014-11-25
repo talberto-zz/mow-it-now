@@ -2,7 +2,9 @@ package com.github.talberto.mowitnow;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.*;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -13,6 +15,8 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
 
 import com.github.talberto.mowitnow.geometry.Point;
 import com.google.common.collect.ImmutableMap;
@@ -44,8 +48,16 @@ public class MowerMovesForwardTest {
   
   @Test public void testMoveForward() {
     Grass grass = mock(Grass.class);
-    // "Infinite" grass
+
     when(grass.contains(any(Point.class))).thenReturn(true);
+    when(grass.move(any(Mower.class), any(Direction.class))).thenAnswer(new Answer<Point>() {
+      @Override
+      public Point answer(InvocationOnMock invocation) throws Throwable {
+        Mower mower = invocation.getArgumentAt(0, Mower.class);
+        Direction d = invocation.getArgumentAt(1, Direction.class);
+        return mower.move(d);
+      }
+    });
     
     Mower mower = new Mower(initialPosition, initialDirection, grass);
     mower = mower.perform(Action.A);
