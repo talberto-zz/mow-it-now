@@ -23,6 +23,8 @@ public class Mower {
     this.position = position;
     this.direction = direction;
     this.grass = grass;
+    
+    grass.addMower(this);
   }
 
   /**
@@ -38,7 +40,7 @@ public class Mower {
     switch(action) {
     // Move forward
     case A:
-      newPosition = position.apply(direction.vector());
+      newPosition = grass.move(this, direction);
       if(grass.contains(newPosition)) {
         return new Mower(newPosition, direction, grass);
       } else {
@@ -76,5 +78,37 @@ public class Mower {
    */
   public Direction getDirection() {
     return direction;
+  }
+
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((direction == null) ? 0 : direction.hashCode());
+    result = prime * result + ((position == null) ? 0 : position.hashCode());
+    return result;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    Mower other = (Mower) obj;
+    if (direction != other.direction)
+      return false;
+    if (position == null) {
+      if (other.position != null)
+        return false;
+    } else if (!position.equals(other.position))
+      return false;
+    return true;
+  }
+
+  public Point move(Direction moveTo) {
+    return position.apply(moveTo.vector());
   }
 }

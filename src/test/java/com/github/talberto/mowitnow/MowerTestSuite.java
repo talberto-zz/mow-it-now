@@ -8,7 +8,8 @@ import org.junit.runners.Suite;
   MowerTurnsLeftTest.class,
   MowerTurnsRightTest.class,
   MowerMovesForwardTest.class,
-  MowerCantMoveOutsideGrassTest.class
+  MowerCantMoveOutsideGrassTest.class,
+  MowerCantMoveToOccupiedPositionTest.class
 })
 public class MowerTestSuite {
 }
